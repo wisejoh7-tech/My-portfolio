@@ -1,0 +1,36 @@
+
+
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+body {background: linear-gradient(135deg, #0f172a, #020617); color:white; transition:0.4s;}
+.navbar {display:flex; justify-content:space-between; align-items:center; padding:5px 10%; position:sticky; top:0; backdrop-filter:blur(10px); background:rgba(0,0,0,0.5);}
+.navbar a {color:white; text-decoration:none; margin-left:20px; font-weight:500;}
+.navbar button {background:#38bdf8; border:none; padding:8px; border-radius:20px; cursor:pointer; color:white; font-weight:600;}
+.hero {height:90vh; display:flex; align-items:center; justify-content:center; text-align:center;}
+.hero-box {background: rgba(255,255,255,0.05); padding:20px; border-radius:20px; backdrop-filter:blur(20px);}
+.hero h1 {font-size:50px; color:#38bdf8;}
+.hero p {margin-top:5px; font-size:18px; color:#cbd5e1;}
+.section {padding:10px 10%; border-radius:20px; margin:20px 0;}
+img{width:100%; border-radius:20px; margin-top:20px;}
+.section h2 {margin-bottom:30px; font-size:36px; color:white; border-bottom:2px solid #38bdf8; display:inline-block; padding-bottom:5px;}
+.card {background:#1e293b; padding:10px; border-radius:20px; margin:20px 0; transition:0.3s;}
+.card:hover {transform:translateY(-10px); box-shadow:0 20px 40px rgba(0,0,0,0.4);}
+.skills span {display:inline-block; background:#7092c0; padding:15px; margin:5px; border-radius:20px; font-size:14px;}
+.dropdown-btn {background:#0ea5e9; border:none; padding:10px; border-radius:12px; color:white; font-weight:600; cursor:pointer;}
+.dropdown-list {list-style:none; margin-top:12px; padding:10px; background:white; border-radius:12px;}
+.dropdown-list li {padding:8px 6px;color: #0ea5e9;text-decoration: underline;}
+.dropdown-list li strong {color:#0ea5e9; margin-right:6px;}
+.hidden {display:none;}
+.chart-container {width:100%; max-width:700px; margin:0 auto;}
+.light-mode {background:white; color:black;}
+footer {text-align:center; padding:20px; background:#6f82d3; margin-top:40px;}
+/* Shared styles for data/report tables used in templates */
+.report-table {border-collapse:collapse; width:100%; font-family:Consolas, monospace; font-size:12px; margin:12px 0;}
+.report-table th, .report-table td {border:1px solid #ccc; padding:6px;}
+.report-table th {text-align:left; background:rgba(255,255,255,0.02);}
+.report-table td.numeric, .report-table th.numeric {text-align:right}
+.report-table.small {width:auto}
+.report-table.mono {font-family:Consolas, monospace}
+.report-summary {width:60%;}
+.report-metrics {width:40%;}
+.confusion-matrix {width:200px;}
+.report-note {font-family:Consolas, monospace; margin:8px 0}
