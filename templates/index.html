@@ -1,120 +1,128 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Osamudiamen Idemudia | AI & Healthcare Tech</title>
+<title>My Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<style>
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
-body {background:#0f172a; color:white;}
-header {
-    padding:40px;
-    text-align:center;
-}
-header h1 {font-size:42px; color:#38bdf8;}
-header p {margin-top:10px; color:#cbd5e1;}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="/static/index.css">
+<script src="/static/index.js" defer></script>
 
-section {padding:60px 10%;}
-
-.card {
-    background:#1e293b;
-    padding:25px;
-    border-radius:15px;
-    margin-bottom:20px;
-    transition:0.3s;
-}
-.card:hover {
-    transform:translateY(-5px);
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
-}
-
-.skills span {
-    display:inline-block;
-    background:#334155;
-    padding:8px 15px;
-    margin:5px;
-    border-radius:20px;
-    font-size:14px;
-}
-
-button {
-    background:#38bdf8;
-    border:none;
-    padding:12px 25px;
-    border-radius:30px;
-    color:white;
-    cursor:pointer;
-}
-
-footer {
-    text-align:center;
-    padding:20px;
-    background:#020617;
-    margin-top:40px;
-}
-</style>
 </head>
 
 <body>
 
-<header>
-<h1>Osamudiamen Idemudia</h1>
-<p>Data Scientist | ML Engineer | Healthcare Tech Developer</p>
-</header>
+<!-- Navbar -->
+<div class="navbar">
+<h2>Osamudiamen</h2>
+<div>
+<a href="#about">About</a>
+<a href="{{ url_for('skills') }}">Skills</a>
+<a href="{{ url_for('projects') }}">Projects</a>
+<a href="{{ url_for('analytic') }}">Analytics</a>
 
-<section>
+<a href="#contact">Contact</a>
+<button onclick="toggleMode()">🌙</button>
+</div>
+</div>
+
+<!-- Hero Section -->
+<div class="hero">
+<div class="hero-box">
+<h1>AI-Powered Healthcare Solutions</h1>
+<p>Data Scientist | ML Engineer | Full-Stack Developer</p>
+</div>
+</div>
+
+<!-- About Section -->
+<div id="about" class="section">
 <h2>About Me</h2>
 <div class="card">
-<p>I build AI-powered healthcare systems and full-stack web applications using Python, Machine Learning, and Flask. My goal is to create intelligent solutions that transform healthcare data into impactful insights.</p>
+<p>I design and deploy intelligent healthcare web applications and machine learning systems that transform raw medical data into predictive insights. My expertise spans Data Science, Full-Stack Web Development, and AI-powered Healthcare Tech solutions.</p>
 </div>
-</section>
+</div>
 
-<section>
+<!-- Skills Section -->
+<div id="skills" class="section">
 <h2>Skills</h2>
 <div class="skills">
 <span>Python</span>
 <span>Pandas</span>
+<span>NumPy</span>
 <span>Scikit-learn</span>
 <span>Flask</span>
-<span>SQLAlchemy</span>
-<span>Machine Learning</span>
-<span>Data Visualization</span>
-<span>Healthcare Analytics</span>
+<span>Django</span>
+<span>PostgreSQL</span>
+<span>Excel</span>
+<span>Tableau</span>
+<span>Power BI</span>
 </div>
-</section>
+</div>
 
-<section>
+<!-- Projects Section -->
+<div id="projects" class="section">
 <h2>Projects</h2>
-
 <div class="card">
 <h3>Healthcare ML Dashboard</h3>
-<p>Machine learning system for analyzing patient data and predicting outcomes with interactive dashboards.</p>
+<p>Machine learning system that predicts patient outcomes and provides interactive visualization dashboards.</p>
 </div>
 
 <div class="card">
-<h3>Data Analysis Projects</h3>
-<p>Exploratory data analysis using Pandas and Matplotlib with statistical insights.</p>
+<h3>Data Science Analysis Suite</h3>
+<p>Exploratory Data Analysis (EDA) and visualization projects with Pandas, Matplotlib, and Seaborn.</p>
 </div>
 
 <div class="card">
 <h3>Flask Social App</h3>
-<p>Full-stack web application with authentication and real-time chat system.</p>
+<p>Full-stack web app with authentication, real-time chat, and database integration using Flask and SocketIO.</p>
 </div>
 
-</section>
+<div class="card">
+<h3>Django E-commerce website</h3>
+<p>Full-stack web app with authentication, real-time chat, and database integration using Django and PostgreSQLlite.</p>
+</div>
+<div class="card">
+<h3>Data Analysis with Excel and Postgres</h3>
+<p>Performed data analysis, and visualization Pivot Chart, Dashaboard creation and data analysis(ANOVA, Regression Analysis, And other Analysis using excel) and Power BI And Tableau.</p>
+</div>
+</div>
 
-<section>
+</div>
+</div>
+
+
+
+<!-- Analytics Section -->
+<div id="analytics" class="section">
+<h2>Analytics Overview</h2>
+<div class="card chart-container">
+<canvas id="accuracyChart"></canvas>
+
+</div>
+<div class="card chart-container">
+<canvas id="userGrowthChart"></canvas>
+<img src="/static/image/Figure 2026-02-19 121530 (0).png" alt="">
+</div>
+</div>
+
+<!-- Contact Section -->
+<div id="contact" class="section">
 <h2>Contact</h2>
 <div class="card">
-<p>Email: your@email.com</p>
-<p>GitHub: github.com/yourusername</p>
+<p>Email: idemudiawisdom27@email.com, wisdomosas@yahoo.com</p>
+<p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
 </div>
-</section>
+</div>
 
+<!-- Footer -->
 <footer>
-<p>© 2026 Osamudiamen Idemudia | AI Healthcare Portfolio</p>
+<p>© 2026 Osamudiamen | AI Healthcare Portfolio</p>
 </footer>
+
 
 </body>
 </html>
