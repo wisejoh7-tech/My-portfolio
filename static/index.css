@@ -34,3 +34,334 @@ footer {text-align:center; padding:20px; background:#6f82d3; margin-top:40px;}
 .report-metrics {width:40%;}
 .confusion-matrix {width:200px;}
 .report-note {font-family:Consolas, monospace; margin:8px 0}
+
+.navbar.shrink {
+    padding: 5px 10%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(25px);
+    transition: all 0.3s ease;
+}
+
+.navbar.shrink .logo {
+    font-size: 20px;
+}
+
+
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 10px 5%;
+    }
+.div{
+    flex-direction: column;
+        align-items: flex-start;
+         gap:5px;
+}
+    .section {
+        padding: 20px 5%;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+}
+
+/* All Mobile Phones */
+@media (max-width: 768px) {
+
+    /* Navbar */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 5%;
+    }
+.div{
+   flex-direction: column;
+        align-items: flex-start;
+        gap:5px;
+}
+    .navbar a {
+        margin: 8px 0;
+        display: block;
+    }
+
+    .navbar button {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .hero-box {
+        padding: 20px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    /* Sections */
+    .section {
+        padding: 20px;
+        margin: 15px 10px;
+    }
+
+    .section h2 {
+        font-size: 26px;
+    }
+
+    /* Cards */
+    .card {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    /* Skills */
+    .skills span {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    /* Charts */
+    .chart-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Tables */
+    .report-summary,
+    .report-metrics {
+        width: 100%;
+    }
+
+    .confusion-matrix {
+        width: 100%;
+    }
+
+    .report-table {
+        font-size: 10px;
+    }
+}
+
+/* Very Small Phones */
+@media (max-width: 480px) {
+
+    .hero h1 {
+        font-size: 26px;
+    }
+ .div{
+    flex-direction: column;
+        align-items: flex-start;
+     gap:5px;}
+        
+    .hero p {
+        font-size: 14px;
+    }
+
+    .section h2 {
+        font-size: 22px;
+    }
+
+    .skills span {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-list {
+        padding: 8px;
+    }
+
+    footer {
+        font-size: 14px;
+        padding: 15px;
+    }
+}
+
+/* ================= MOBILE NAVBAR ================= */
+
+.menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Default nav links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+.div{
+    flex-direction: column;
+        align-items: flex-start;
+     gap:5px;}
+    .navbar {
+        padding: 15px 5%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 5%;
+        width: 90%;
+        flex-direction: column;
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(20px);
+        border-radius: 15px;
+        padding: 20px;
+        display: none;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    .nav-links a,
+    .nav-links button {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+
+/* Smooth dropdown animation */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ================= MODERN MOBILE NAVBAR ================= */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10%;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(15px);
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+/* Nav Links */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a,
+.nav-links button {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-links button {
+    background: #38bdf8;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Hamburger menu */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    width: 30px;
+    height: 25px;
+    justify-content: center;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger animation when active */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        flex-direction: column;
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(20px);
+        padding: 40px 20px;
+        gap: 25px;
+        transition: right 0.4s ease;
+        border-left: 2px solid #38bdf8;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links a,
+    .nav-links button {
+        font-size: 18px;
+        width: 100%;
+        text-align: center;
+    }
+
+}

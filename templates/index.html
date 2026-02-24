@@ -16,10 +16,16 @@
 
 <body>
 
-<!-- Navbar -->
-<div class="navbar">
-<h2>Osamudiamen</h2>
-<div>
+   <nav class="navbar">
+    <div class="logo">MyPortfolio</div>
+
+    <!-- Hamburger Menu Toggle -->
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div  class="div" style="display: flex;align-items:center;gap:20px">
 <a href="#about">About</a>
 <a href="{{ url_for('skills') }}">Skills</a>
 <a href="{{ url_for('projects') }}">Projects</a>
@@ -28,13 +34,14 @@
 <a href="#contact">Contact</a>
 <button onclick="toggleMode()">🌙</button>
 </div>
-</div>
+    </div>
+</nav>
 
 <!-- Hero Section -->
 <div class="hero">
 <div class="hero-box">
 <h1>AI-Powered Healthcare Solutions</h1>
-<p>Data Scientist | ML Engineer | Full-Stack Developer</p>
+<p>Data Scientist | ML Engineer | Full-Stack Developer | And AI Assistance</p>
 </div>
 </div>
 
@@ -60,6 +67,7 @@
 <span>Excel</span>
 <span>Tableau</span>
 <span>Power BI</span>
+<span>EHR</span>
 </div>
 </div>
 
