@@ -1,277 +1,58 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="qrichtext" content="1" /><style type="text/css">
-p, li { white-space: pre-wrap; }
-</style>
-<link rel="stylesheet" href="/static/index.css">
-</head><body style=" font-family:'Consolas'; font-size:10pt; font-weight:400; font-style:normal;width: 90%; margin: 20px auto; color:white;font-size:larger;">
-<h2 style="margin:0 0 8px 0; font-family:Consolas, monospace;">Dataset Loaded Successfully</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce ML Behavior Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/index.css">
+    <script src="/static/index.js" defer></script>
+</head>
+<body style="width: 90%; margin: 20px auto; color:white;">
+    <nav class="navbar" style="margin-bottom:20px; border-radius:15px;">
+        <div class="logo"><a href="/" style="color:#38bdf8; text-decoration:none;">MyPortfolio</a></div>
+        <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+        <div class="nav-links" id="navLinks">
+            <a href="/">Home</a>
+            <a href="{{ url_for('projects') }}">All Projects</a>
+            <a href="{{ url_for('diabetes') }}">Diabetes</a>
+            <a href="{{ url_for('hypertension') }}">Hypertension</a>
+            <a href="{{ url_for('retailer') }}">Retailer</a>
+            <button onclick="toggleMode()">🌙</button>
+        </div>
+    </nav>
 
-<table style="border-collapse:collapse; width:100%; font-family:Consolas, monospace; font-size:12px;">
-	</table>
+    <h2>E-Commerce ML & Customer Conversion Model</h2>
 
-	<p style="margin:8px 0 0 0; font-family:Consolas, monospace;">[500 rows x 5 columns]</p>
+    <!-- Interactive E-commerce Prediction -->
+    <div class="card" style="border: 1px solid #38bdf8; padding: 20px; margin-bottom: 25px;">
+        <h3 style="color:#38bdf8; margin-bottom: 10px;">🛒 Real-Time Purchase Intent Predictor</h3>
+        <p style="margin-bottom:15px; font-size:14px; color:#cbd5e1;">Predict customer purchase probability based on session activity:</p>
+        <form id="ecommerceForm" onsubmit="event.preventDefault(); runPrediction('/predict/ecommerce', 'ecommerceForm', 'ecommerceResult');" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; align-items: end;">
+            <div>
+                <label style="font-size:12px; display:block; margin-bottom:5px;">Pages Visited:</label>
+                <input type="number" name="pages_visited" value="12" min="1" max="100" step="1" required style="width:100%; padding:8px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:white;">
+            </div>
+            <div>
+                <label style="font-size:12px; display:block; margin-bottom:5px;">Time Spent (Minutes):</label>
+                <input type="number" name="time_spent_min" value="25" min="1" max="500" step="1" required style="width:100%; padding:8px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:white;">
+            </div>
+            <div>
+                <label style="font-size:12px; display:block; margin-bottom:5px;">Cart Abandoned:</label>
+                <select name="cart_abandoned" style="width:100%; padding:8px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:white;">
+                    <option value="0">No (Active/Progressing)</option>
+                    <option value="1">Yes (Abandoned)</option>
+                </select>
+            </div>
+            <div>
+                <button type="submit" class="dropdown-btn" style="width:100%; height:40px;">Predict Purchase</button>
+            </div>
+        </form>
+        <div id="ecommerceResult" style="display:none; margin-top:15px;"></div>
+    </div>
 
-	<h3 style="margin:12px 0 8px 0; font-family:Consolas, monospace;">Linear Regression Performance</h3>
-	<table class="report-metrics report-table" style="border-collapse:collapse; width:40%; font-family:Consolas, monospace; font-size:12px;">
-		<thead><tr><th style="border:1px solid #ccc; padding:6px; text-align:left;">Metric</th><th style="border:1px solid #ccc; padding:6px; text-align:right;">Value</th></tr></thead>
-		<tbody>
-			<tr><td style="border:1px solid #ccc; padding:6px;">MAE</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.4944673666840025</td></tr>
-			<tr><td style="border:1px solid #ccc; padding:6px;">MSE</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.24569172268356831</td></tr>
-			<tr><td style="border:1px solid #ccc; padding:6px;">RMSE</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.4956729997524258</td></tr>
-			<tr><td style="border:1px solid #ccc; padding:6px;">R2 Score</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">-0.002414209235285014</td></tr>
-		</tbody>
-	</table>
-
-	<h3 style="margin:12px 0 8px 0; font-family:Consolas, monospace;">Random Forest Performance</h3>
-	<table class="report-metrics report-table" style="border-collapse:collapse; width:40%; font-family:Consolas, monospace; font-size:12px;">
-		<thead><tr><th style="border:1px solid #ccc; padding:6px; text-align:left;">Metric</th><th style="border:1px solid #ccc; padding:6px; text-align:right;">Value</th></tr></thead>
-		<tbody>
-			<tr><td style="border:1px solid #ccc; padding:6px;">MAE</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.4747</td></tr>
-			<tr><td style="border:1px solid #ccc; padding:6px;">MSE</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.269135</td></tr>
-			<tr><td style="border:1px solid #ccc; padding:6px;">RMSE</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.5187822279145653</td></tr>
-			<tr><td style="border:1px solid #ccc; padding:6px;">R2 Score</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">-0.09806201550387628</td></tr>
-		</tbody>
-	</table>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">2</td>
-			<td style="border:1px solid #ccc; padding:6px;">19</td>
-			<td style="border:1px solid #ccc; padding:6px;">59</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">3</td>
-			<td style="border:1px solid #ccc; padding:6px;">9</td>
-			<td style="border:1px solid #ccc; padding:6px;">58</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">4</td>
-			<td style="border:1px solid #ccc; padding:6px;">10</td>
-			<td style="border:1px solid #ccc; padding:6px;">19</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">5</td>
-			<td style="border:1px solid #ccc; padding:6px;">11</td>
-			<td style="border:1px solid #ccc; padding:6px;">9</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-		</tr>
-	</tbody>
-</table>
-
-<p style="margin:8px 0 0 0; font-family:Consolas, monospace;">[500 rows x 5 columns]</p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Linear Regression Performance</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">MAE: 0.4944673666840025</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">MSE: 0.24569172268356831</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">RMSE: 0.4956729997524258</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">R2 Score: -0.002414209235285014</p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Random Forest Performance</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">MAE: 0.4746999999999999</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">MSE: 0.269135</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">RMSE: 0.5187822279145653</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">R2 Score: -0.09806201550387628</p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<h3 style="margin:12px 0 8px 0; font-family:Consolas, monospace;">Feature Importance</h3>
-
-<table class="report-summary report-table" style="border-collapse:collapse; width:60%; font-family:Consolas, monospace; font-size:12px;">
-	<thead>
-		<tr>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Feature</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Importance</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">Customer_ID</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.455902</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">Time_Spent_Min</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.291880</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">Pages_Visited</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.210038</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">Cart_Abandoned</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.042180</td>
-		</tr>
-	</tbody>
-</table>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /> </p>
-
-<br/>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Sample Prediction: [0.68]</p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-
-<h3 style="margin:0 0 8px 0; font-family:Consolas, monospace;">First 5 Rows</h3>
-
-<table style="border-collapse:collapse; width:100%; font-family:Consolas, monospace; font-size:12px;">
-	<thead>
-		<tr>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Customer_ID</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Pages_Visited</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Time_Spent_Min</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Cart_Abandoned</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Purchased</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-			<td style="border:1px solid #ccc; padding:6px;">9</td>
-			<td style="border:1px solid #ccc; padding:6px;">21</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">2</td>
-			<td style="border:1px solid #ccc; padding:6px;">19</td>
-			<td style="border:1px solid #ccc; padding:6px;">59</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">3</td>
-			<td style="border:1px solid #ccc; padding:6px;">9</td>
-			<td style="border:1px solid #ccc; padding:6px;">58</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">4</td>
-			<td style="border:1px solid #ccc; padding:6px;">10</td>
-			<td style="border:1px solid #ccc; padding:6px;">19</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">5</td>
-			<td style="border:1px solid #ccc; padding:6px;">11</td>
-			<td style="border:1px solid #ccc; padding:6px;">9</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-		</tr>
-	</tbody>
-</table>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Dataset Shape: (500, 5)</p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Data Info:</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">RangeIndex: 500 entries, 0 to 499</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Data columns (total 5 columns):</p>
-
-
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> 0   Customer_ID     500 </p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> 1   Pages_Visited   500 </p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> 2   Time_Spent_Min  500 </p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> 3   Cart_Abandoned  500 </p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"> 4   Purchased       500 </p>
-<h3 style="margin:12px 0 8px 0; font-family:Consolas, monospace;">Statistical Summary</h3>
-
-<table style="border-collapse:collapse; width:100%; font-family:Consolas, monospace; font-size:12px;">
-	<thead>
-		<tr>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Statistic</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Customer_ID</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Pages_Visited</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Time_Spent_Min</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Cart_Abandoned</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Purchased</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">count</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">mean</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">250.500000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">10.260000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">30.020000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.512000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.524000</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">std</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">144.481833</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">5.597058</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">16.727319</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.500357</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.499924</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">min</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.000000</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">25%</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">125.750000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">5.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">15.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">0.000000</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">50%</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">250.500000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">10.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">31.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">75%</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">375.250000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">15.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">45.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">max</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">19.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">59.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td>
-			<td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td>
-		</tr>
-	</tbody>
-</table>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Missing Values:</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Customer_ID       0</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Pages_Visited     0</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Time_Spent_Min    0</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Cart_Abandoned    0</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Purchased         0</p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Missing Values After Cleaning:</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Customer_ID       0</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Pages_Visited     0</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Time_Spent_Min    0</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Cart_Abandoned    0</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Purchased         0</p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Cleaned file saved successfully!</p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+    <footer style="margin-top:30px;">
+        <p>© 2026 Osamudiamen | AI Healthcare Portfolio</p>
+    </footer>
+</body>
+</html>

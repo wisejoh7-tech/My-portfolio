@@ -1,85 +1,86 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Excel analytic</title>
-  </head>
-  <style>
-      div {
-        width: 80%;
-        max-width: 400px;
-      }
-      body {
-        font-family: "Poppins", sans-serif;
-        background-color: #f4f4f4;
-        color: #333;
-        margin: auto;
-        width: 80%;
-      }
-      img {
-        margin: auto;
-        width: 100%;
-        max-width: 500px;
-        height: auto;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        max-height: 300px;
-        margin-top: 20px;
-        margin-bottom: 10px;
-      }
-      section {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        border: 1px solid blue;
-        gap: 20px;
-      }
-    </style>
-  <body>
-   <div style="background-color: rgb(172, 172, 226);color:#f4f4f4; margin-top: 10px;margin-bottom: 10px;border:1px solid blue; border-radius: 8px;  margin-left: 10px; text-align: center;" >
-    
-    <h2>Excel Analysis</h2>
-    <h2>Spyder visualization</h2>
-    <h2>Flask Analytic</h2>
-    <h2>Django Ecommerce</h2>
-   </div> 
-    <section>
-      <img src="/static/image/excel.my.png" alt="" />
-      <img src="/static/image/EXCEL1.png" alt="" />
-      <img src="/static/image/excel3.png" alt="" />
-      <img src="/static/image/ml.png" alt="" />
- <img src="/static/image/ml1.png" alt="" />
-      <img src="/static/image/ml3.png" alt="" />
-      <img src="/static/image/ml5.png" alt="" />
-      <img src="/static/image/mls8.png" alt="" />
-      <img src="/static/image/my website.png" alt="" />
-      <img src="/static/image/my we.png" alt="" />
-      <img src="/static/image/my web2.png" alt="" />
-      <img src="/static/image/mywbe6.png" alt="" />
-      <img src="/static/image/website.png" alt="" />
-      <img src="/static/image/newweb.png" alt="" />
-      <img src="/static/image/new23.png" alt="" />
-      <img src="/static/image/Figure 2026-02-19 121530 (0).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121530 (1).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121530 (2).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121530 (3).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121530 (4).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121530 (5).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121530 (6).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121530 (7).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121530 (1).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121818 (0).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121818 (1).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121818 (2).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121818 (3).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121818 (4).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121818 (5).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 121818 (6).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 225512.png" alt="">
-      <img src="/static/image/Figure 2026-02-19 231004 (0).png" alt="">
-      <img src="/static/image/Figure 2026-02-19 231004 (1).png" alt="">
-     
-    </section>
-  </body>
+    <title>Analytics & Visualizations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/index.css">
+    <script src="/static/index.js" defer></script>
+</head>
+<body style="width:90%; margin:auto;">
+    <nav class="navbar" style="margin-bottom:20px; border-radius:15px;">
+        <div class="logo"><a href="/" style="color:#38bdf8; text-decoration:none;">MyPortfolio</a></div>
+        <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+        <div class="nav-links" id="navLinks">
+            <a href="/">Home</a>
+            <a href="{{ url_for('skills') }}">Skills</a>
+            <a href="{{ url_for('projects') }}">Projects</a>
+            <a href="{{ url_for('analytic') }}">Analytics</a>
+            <button onclick="toggleMode()">🌙</button>
+        </div>
+    </nav>
+
+    <div class="card" style="padding: 20px; text-align: center; border: 1px solid #38bdf8;">
+        <h2>Exploratory Data Analysis & Visualizations</h2>
+        <p style="margin-top:10px; color:#cbd5e1;">Excel Pivot Dashboards, Python Matplotlib/Seaborn Visualizations, ANOVA & Statistical Modeling</p>
+    </div>
+
+    <!-- Interactive Dataset Upload / Summary Form -->
+    <div class="card" style="padding:20px; border:1px solid #0ea5e9; margin-top:20px;">
+        <h3 style="color:#38bdf8;">📂 Interactive Dataset Profiler</h3>
+        <p style="font-size:14px; margin-bottom:15px; color:#cbd5e1;">Upload a CSV or Excel dataset to generate real-time shape, null counts, and column types:</p>
+        <form id="uploadForm" onsubmit="event.preventDefault(); analyzeDataset();" style="display:flex; gap:15px; flex-wrap:wrap; align-items:center;">
+            <input type="file" id="datasetFile" accept=".csv,.xlsx,.xls" required style="padding:8px; background:#0f172a; color:white; border-radius:8px; border:1px solid #475569;">
+            <button type="submit" class="dropdown-btn">Analyze File</button>
+        </form>
+        <div id="uploadResult" style="display:none; margin-top:15px;"></div>
+    </div>
+
+    <script>
+    async function analyzeDataset() {
+        const fileInput = document.getElementById('datasetFile');
+        const resultBox = document.getElementById('uploadResult');
+        if (!fileInput.files.length) return;
+
+        resultBox.style.display = 'block';
+        resultBox.innerHTML = '<p style="color:#38bdf8;">Processing dataset...</p>';
+
+        const formData = new FormData();
+        formData.append('file', fileInput.files[0]);
+
+        try {
+            const resp = await fetch('/api/dataset-summary', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await resp.json();
+            if (!resp.ok || !data.success) {
+                resultBox.innerHTML = `<p style="color:#ef4444;">Error: ${data.error || 'Failed to process dataset'}</p>`;
+                return;
+            }
+            let html = `<div style="padding:15px; background:rgba(56,189,248,0.1); border-radius:10px; border:1px solid #38bdf8;">`;
+            html += `<p><strong>Shape:</strong> ${data.shape.rows} rows × ${data.shape.columns} columns</p>`;
+            html += `<p><strong>Detected Columns:</strong> ${data.columns.join(', ')}</p>`;
+            html += `</div>`;
+            resultBox.innerHTML = html;
+        } catch (err) {
+            resultBox.innerHTML = `<p style="color:#ef4444;">Upload error: ${err.message}</p>`;
+        }
+    }
+    </script>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 25px;">
+        <img src="/static/image/excel.my.png" alt="Excel Analytics Dashboard" />
+        <img src="/static/image/EXCEL1.png" alt="Excel Visualization" />
+        <img src="/static/image/excel3.png" alt="Pivot Analysis" />
+        <img src="/static/image/ml.png" alt="Machine Learning Metrics" />
+        <img src="/static/image/Figure 2026-02-19 121530 (0).png" alt="ROC / Performance Curve" />
+        <img src="/static/image/Figure 2026-02-19 121818 (1).png" alt="Feature Distribution" />
+    </div>
+
+    <footer>
+        <p>© 2026 Osamudiamen | AI Healthcare Portfolio</p>
+    </footer>
+</body>
 </html>

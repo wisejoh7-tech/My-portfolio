@@ -1,39 +1,35 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Portfolio</title>
+<title>AI Healthcare & ML Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="/static/index.css">
 <script src="/static/index.js" defer></script>
-
 </head>
 
 <body>
 
-   <nav class="navbar">
+<nav class="navbar">
     <div class="logo">MyPortfolio</div>
 
     <!-- Hamburger Menu Toggle -->
-    <div class="menu-toggle" id="menuToggle">
+    <div class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
     </div>
-    <div  class="div" style="display: flex;align-items:center;gap:20px">
-<a href="#about">About</a>
-<a href="{{ url_for('skills') }}">Skills</a>
-<a href="{{ url_for('projects') }}">Projects</a>
-<a href="{{ url_for('analytic') }}">Analytics</a>
 
-<a href="#contact">Contact</a>
-<button onclick="toggleMode()">🌙</button>
-</div>
+    <div class="nav-links" id="navLinks">
+        <a href="/">Home</a>
+        <a href="#about">About</a>
+        <a href="{{ url_for('skills') }}">Skills</a>
+        <a href="{{ url_for('projects') }}">Projects</a>
+        <a href="{{ url_for('analytic') }}">Analytics</a>
+        <a href="#contact">Contact</a>
+        <button onclick="toggleMode()" title="Toggle Theme">🌙</button>
     </div>
 </nav>
 
@@ -41,7 +37,11 @@
 <div class="hero">
 <div class="hero-box">
 <h1>AI-Powered Healthcare Solutions</h1>
-<p>Data Scientist | ML Engineer | Full-Stack Developer | And AI Assistance</p>
+<p>Data Scientist | ML Engineer | Full-Stack Developer | AI Systems</p>
+<div style="margin-top:20px; display:flex; gap:15px; justify-content:center; flex-wrap:wrap;">
+    <a href="{{ url_for('projects') }}" style="background:#38bdf8; color:#0f172a; padding:10px 20px; border-radius:20px; text-decoration:none; font-weight:600;">Explore ML Models</a>
+    <a href="{{ url_for('analytic') }}" style="background:rgba(255,255,255,0.1); color:white; border:1px solid #38bdf8; padding:10px 20px; border-radius:20px; text-decoration:none; font-weight:600;">View Analytics</a>
+</div>
 </div>
 </div>
 
@@ -49,7 +49,7 @@
 <div id="about" class="section">
 <h2>About Me</h2>
 <div class="card">
-<p>I design and deploy intelligent healthcare web applications and machine learning systems that transform raw medical data into predictive insights. My expertise spans Data Science, Full-Stack Web Development, and AI-powered Healthcare Tech solutions.</p>
+<p>I design and deploy intelligent healthcare web applications and machine learning systems that transform raw medical data into predictive insights. My expertise spans Data Science, Full-Stack Web Development, and AI-powered Healthcare Tech solutions ready for cloud production across Render, AWS, Vercel, and Netlify.</p>
 </div>
 </div>
 
@@ -67,53 +67,49 @@
 <span>Excel</span>
 <span>Tableau</span>
 <span>Power BI</span>
-<span>EHR</span>
+<span>Docker</span>
+<span>AWS</span>
 </div>
 </div>
 
 <!-- Projects Section -->
 <div id="projects" class="section">
-<h2>Projects</h2>
+<h2>Interactive ML Projects</h2>
 <div class="card">
-<h3>Healthcare ML Dashboard</h3>
-<p>Machine learning system that predicts patient outcomes and provides interactive visualization dashboards.</p>
-</div>
-
-<div class="card">
-<h3>Data Science Analysis Suite</h3>
-<p>Exploratory Data Analysis (EDA) and visualization projects with Pandas, Matplotlib, and Seaborn.</p>
+<h3><a href="{{ url_for('diabetes') }}" style="color:#38bdf8; text-decoration:none;">🩺 Diabetes Risk Predictor & Analytics</a></h3>
+<p>Supervised machine learning model calculating diabetes likelihood based on Age, BMI, Glucose, Insulin, and HbA1c metrics with live interactive clinical simulation.</p>
 </div>
 
 <div class="card">
-<h3>Flask Social App</h3>
-<p>Full-stack web app with authentication, real-time chat, and database integration using Flask and SocketIO.</p>
+<h3><a href="{{ url_for('hypertension') }}" style="color:#38bdf8; text-decoration:none;">❤️ Hypertension Cardiovascular Classifier</a></h3>
+<p>Clinical evaluation model assessing patient blood pressure stages, cardiovascular risk factors, and actionable physician guidelines.</p>
 </div>
 
 <div class="card">
-<h3>Django E-commerce website</h3>
-<p>Full-stack web app with authentication, real-time chat, and database integration using Django and PostgreSQLlite.</p>
+<h3><a href="{{ url_for('typhoid') }}" style="color:#38bdf8; text-decoration:none;">🧪 Typhoid Fever Diagnosis System</a></h3>
+<p>Diagnostic inference engine correlating fever temperature, abdominal symptoms, and Widal test markers.</p>
 </div>
+
 <div class="card">
-<h3>Data Analysis with Excel and Postgres</h3>
-<p>Performed data analysis, and visualization Pivot Chart, Dashaboard creation and data analysis(ANOVA, Regression Analysis, And other Analysis using excel) and Power BI And Tableau.</p>
-</div>
-</div>
-
-</div>
+<h3><a href="{{ url_for('ecommerce') }}" style="color:#38bdf8; text-decoration:none;">🛒 E-Commerce Customer Behavior & Conversion ML</a></h3>
+<p>Predictive purchase probability model analyzing session duration, page visit depth, and cart abandonment behavior.</p>
 </div>
 
-
+<div class="card">
+<h3><a href="{{ url_for('retailer') }}" style="color:#38bdf8; text-decoration:none;">📊 Retail Sales & Transaction Analytics</a></h3>
+<p>Exploratory data analysis, transaction profiling, and revenue optimization metrics across regional retail distributions.</p>
+</div>
+</div>
 
 <!-- Analytics Section -->
 <div id="analytics" class="section">
 <h2>Analytics Overview</h2>
 <div class="card chart-container">
 <canvas id="accuracyChart"></canvas>
-
 </div>
 <div class="card chart-container">
 <canvas id="userGrowthChart"></canvas>
-<img src="/static/image/Figure 2026-02-19 121530 (0).png" alt="">
+<img src="/static/image/Figure 2026-02-19 121530 (0).png" alt="Analytics Chart Visual">
 </div>
 </div>
 
@@ -121,16 +117,15 @@
 <div id="contact" class="section">
 <h2>Contact</h2>
 <div class="card">
-<p>Email: idemudiawisdom27@email.com, wisdomosas@yahoo.com</p>
-<p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+<p>Email: <a href="mailto:idemudiawisdom27@gmail.com" style="color:#38bdf8;">idemudiawisdom27@gmail.com</a>, <a href="mailto:wisdomosas@yahoo.com" style="color:#38bdf8;">wisdomosas@yahoo.com</a></p>
+<p>GitHub: <a href="https://github.com/wisejoh7-tech" target="_blank" style="color:#38bdf8;">github.com/wisejoh7-tech</a></p>
 </div>
 </div>
 
 <!-- Footer -->
 <footer>
-<p>© 2026 Osamudiamen | AI Healthcare Portfolio</p>
+<p>© 2026 Osamudiamen | AI Healthcare & Full-Stack ML Portfolio</p>
 </footer>
-
 
 </body>
 </html>
