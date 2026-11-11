@@ -1,131 +1,85 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="qrichtext" content="1" /><style type="text/css">
-p, li { white-space: pre-wrap; }
-</style>
-<link rel="stylesheet" href="/static/index.css">
-</head><body style=" font-family:'Consolas'; font-size:10pt; font-weight:400; font-style:normal;width: 90%; margin: 20px auto; color:white;font-size:larger;">
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<h2 style="margin:0 0 8px 0; font-family:Consolas, monospace;">First 5 Rows</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction & Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/index.css">
+    <script src="/static/index.js" defer></script>
+</head>
+<body style="width: 90%; margin: 20px auto; color:white;">
+    <nav class="navbar" style="margin-bottom:20px; border-radius:15px;">
+        <div class="logo"><a href="/" style="color:#38bdf8; text-decoration:none;">MyPortfolio</a></div>
+        <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+        <div class="nav-links" id="navLinks">
+            <a href="/">Home</a>
+            <a href="{{ url_for('projects') }}">All Projects</a>
+            <a href="{{ url_for('hypertension') }}">Hypertension</a>
+            <a href="{{ url_for('typhoid') }}">Typhoid</a>
+            <a href="{{ url_for('ecommerce') }}">E-commerce</a>
+            <button onclick="toggleMode()">🌙</button>
+        </div>
+    </nav>
 
-<table class="report-table" style="border-collapse:collapse; width:100%; font-family:Consolas, monospace; font-size:12px;">
-	<thead>
-		<tr>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Patient_ID</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Age</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">BMI</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Glucose_Level</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Insulin</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">HbA1c</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Diabetes</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-			<td style="border:1px solid #ccc; padding:6px;">23</td>
-			<td style="border:1px solid #ccc; padding:6px;">27.6</td>
-			<td style="border:1px solid #ccc; padding:6px;">127</td>
-			<td style="border:1px solid #ccc; padding:6px;">45</td>
-			<td style="border:1px solid #ccc; padding:6px;">5.1</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">2</td>
-			<td style="border:1px solid #ccc; padding:6px;">74</td>
-			<td style="border:1px solid #ccc; padding:6px;">33.1</td>
-			<td style="border:1px solid #ccc; padding:6px;">108</td>
-			<td style="border:1px solid #ccc; padding:6px;">25</td>
-			<td style="border:1px solid #ccc; padding:6px;">5.1</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">3</td>
-			<td style="border:1px solid #ccc; padding:6px;">26</td>
-			<td style="border:1px solid #ccc; padding:6px;">24.2</td>
-			<td style="border:1px solid #ccc; padding:6px;">149</td>
-			<td style="border:1px solid #ccc; padding:6px;">110</td>
-			<td style="border:1px solid #ccc; padding:6px;">5.9</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">4</td>
-			<td style="border:1px solid #ccc; padding:6px;">47</td>
-			<td style="border:1px solid #ccc; padding:6px;">29.6</td>
-			<td style="border:1px solid #ccc; padding:6px;">166</td>
-			<td style="border:1px solid #ccc; padding:6px;">204</td>
-			<td style="border:1px solid #ccc; padding:6px;">6.4</td>
-			<td style="border:1px solid #ccc; padding:6px;">1</td>
-		</tr>
-		<tr>
-			<td style="border:1px solid #ccc; padding:6px;">5</td>
-			<td style="border:1px solid #ccc; padding:6px;">47</td>
-			<td style="border:1px solid #ccc; padding:6px;">34.9</td>
-			<td style="border:1px solid #ccc; padding:6px;">182</td>
-			<td style="border:1px solid #ccc; padding:6px;">206</td>
-			<td style="border:1px solid #ccc; padding:6px;">7.5</td>
-			<td style="border:1px solid #ccc; padding:6px;">0</td>
-		</tr>
-	</tbody>
-</table>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Dataset Shape: (500, 7)</p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"></p>
-<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">None</p>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<h3 style="margin:12px 0 8px 0; font-family:Consolas, monospace;">Statistical Summary</h3>
-<table style="border-collapse:collapse; width:100%; font-family:Consolas, monospace; font-size:12px;">
-	<thead>
-		<tr>
-			<th style="border:1px solid #ccc; padding:6px; text-align:left;">Statistic</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Patient_ID</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Age</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">BMI</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Insulin</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">HbA1c</th>
-			<th style="border:1px solid #ccc; padding:6px; text-align:right;">Diabetes</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr><td style="border:1px solid #ccc; padding:6px;">count</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">500.00000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">mean</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">250.500000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">47.64200</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">30.390800</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">167.520000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">6.966600</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.502000</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">std</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">144.481833</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">16.00732</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">5.107525</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">82.093168</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">1.499761</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.500497</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">min</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">20.00000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">15.500000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">15.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">2.100000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.000000</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">25%</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">125.750000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">34.00000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">27.200000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">100.500000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">6.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0.000000</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">50%</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">250.500000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">48.50000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">30.600000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">177.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">6.900000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">75%</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">375.250000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">62.00000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">33.500000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">237.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">8.025000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">max</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">500.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">74.00000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">46.300000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">299.000000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">11.100000</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">1.000000</td></tr>
-	</tbody>
-</table>
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
-<h3 style="margin:12px 0 8px 0; font-family:Consolas, monospace;">Missing Values</h3>
-<table style="border-collapse:collapse; width:40%; font-family:Consolas, monospace; font-size:12px;">
-	<thead><tr><th style="border:1px solid #ccc; padding:6px; text-align:left;">Column</th><th style="border:1px solid #ccc; padding:6px; text-align:right;">Missing</th></tr></thead>
-	<tbody>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Patient_ID</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Age</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">BMI</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Glucose_Level</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Insulin</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">HbA1c</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Diabetes</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-	</tbody>
-</table>
+    <h2>Diabetes Risk Prediction & Statistical Analysis</h2>
 
-<h3 style="margin:12px 0 8px 0; font-family:Consolas, monospace;">Missing Values After Cleaning</h3>
-<table style="border-collapse:collapse; width:40%; font-family:Consolas, monospace; font-size:12px;">
-	<thead><tr><th style="border:1px solid #ccc; padding:6px; text-align:left;">Column</th><th style="border:1px solid #ccc; padding:6px; text-align:right;">Missing</th></tr></thead>
-	<tbody>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Patient_ID</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Age</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">BMI</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Glucose_Level</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Insulin</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">HbA1c</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-		<tr><td style="border:1px solid #ccc; padding:6px;">Diabetes</td><td style="border:1px solid #ccc; padding:6px; text-align:right;">0</td></tr>
-	</tbody>
-</table>
+    <!-- Interactive Prediction Section -->
+    <div class="card" style="border: 1px solid #38bdf8; padding: 20px; margin-bottom: 25px;">
+        <h3 style="color:#38bdf8; margin-bottom: 10px;">🧪 Interactive Clinical Risk Predictor</h3>
+        <p style="margin-bottom:15px; font-size:14px; color:#cbd5e1;">Input patient parameters below to execute real-time machine learning inference:</p>
+        <form id="diabetesForm" onsubmit="event.preventDefault(); runPrediction('/predict/diabetes', 'diabetesForm', 'diabetesResult');" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; align-items: end;">
+            <div>
+                <label style="font-size:12px; display:block; margin-bottom:5px;">Patient Age (years):</label>
+                <input type="number" name="age" value="45" min="1" max="120" step="1" required style="width:100%; padding:8px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:white;">
+            </div>
+            <div>
+                <label style="font-size:12px; display:block; margin-bottom:5px;">BMI (kg/m²):</label>
+                <input type="number" name="bmi" value="28.5" min="10" max="60" step="0.1" required style="width:100%; padding:8px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:white;">
+            </div>
+            <div>
+                <label style="font-size:12px; display:block; margin-bottom:5px;">Glucose Level (mg/dL):</label>
+                <input type="number" name="glucose" value="130" min="40" max="350" step="1" required style="width:100%; padding:8px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:white;">
+            </div>
+            <div>
+                <label style="font-size:12px; display:block; margin-bottom:5px;">Insulin (μU/mL):</label>
+                <input type="number" name="insulin" value="150" min="0" max="800" step="1" required style="width:100%; padding:8px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:white;">
+            </div>
+            <div>
+                <label style="font-size:12px; display:block; margin-bottom:5px;">HbA1c (%):</label>
+                <input type="number" name="hba1c" value="6.5" min="3.0" max="15.0" step="0.1" required style="width:100%; padding:8px; border-radius:8px; border:1px solid #475569; background:#0f172a; color:white;">
+            </div>
+            <div>
+                <button type="submit" class="dropdown-btn" style="width:100%; height:40px;">Predict Diabetes Risk</button>
+            </div>
+        </form>
+        <div id="diabetesResult" style="display:none; margin-top:15px;"></div>
+    </div>
 
+    <h3 style="margin:0 0 8px 0; font-family:Consolas, monospace;">Dataset Sample (First 5 Rows)</h3>
+    <table class="report-table" style="border-collapse:collapse; width:100%; font-family:Consolas, monospace; font-size:12px;">
+        <thead>
+            <tr>
+                <th style="border:1px solid #ccc; padding:6px; text-align:left;">Patient_ID</th>
+                <th style="border:1px solid #ccc; padding:6px; text-align:left;">Age</th>
+                <th style="border:1px solid #ccc; padding:6px; text-align:left;">BMI</th>
+                <th style="border:1px solid #ccc; padding:6px; text-align:left;">Glucose_Level</th>
+                <th style="border:1px solid #ccc; padding:6px; text-align:left;">Insulin</th>
+                <th style="border:1px solid #ccc; padding:6px; text-align:left;">HbA1c</th>
+                <th style="border:1px solid #ccc; padding:6px; text-align:left;">Diabetes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td style="border:1px solid #ccc; padding:6px;">1</td><td style="border:1px solid #ccc; padding:6px;">23</td><td style="border:1px solid #ccc; padding:6px;">27.6</td><td style="border:1px solid #ccc; padding:6px;">127</td><td style="border:1px solid #ccc; padding:6px;">45</td><td style="border:1px solid #ccc; padding:6px;">5.1</td><td style="border:1px solid #ccc; padding:6px;">1</td></tr>
+            <tr><td style="border:1px solid #ccc; padding:6px;">2</td><td style="border:1px solid #ccc; padding:6px;">74</td><td style="border:1px solid #ccc; padding:6px;">33.1</td><td style="border:1px solid #ccc; padding:6px;">108</td><td style="border:1px solid #ccc; padding:6px;">25</td><td style="border:1px solid #ccc; padding:6px;">5.1</td><td style="border:1px solid #ccc; padding:6px;">1</td></tr>
+            <tr><td style="border:1px solid #ccc; padding:6px;">3</td><td style="border:1px solid #ccc; padding:6px;">26</td><td style="border:1px solid #ccc; padding:6px;">24.2</td><td style="border:1px solid #ccc; padding:6px;">149</td><td style="border:1px solid #ccc; padding:6px;">110</td><td style="border:1px solid #ccc; padding:6px;">5.9</td><td style="border:1px solid #ccc; padding:6px;">0</td></tr>
+            <tr><td style="border:1px solid #ccc; padding:6px;">4</td><td style="border:1px solid #ccc; padding:6px;">47</td><td style="border:1px solid #ccc; padding:6px;">29.6</td><td style="border:1px solid #ccc; padding:6px;">166</td><td style="border:1px solid #ccc; padding:6px;">204</td><td style="border:1px solid #ccc; padding:6px;">6.4</td><td style="border:1px solid #ccc; padding:6px;">1</td></tr>
+            <tr><td style="border:1px solid #ccc; padding:6px;">5</td><td style="border:1px solid #ccc; padding:6px;">47</td><td style="border:1px solid #ccc; padding:6px;">34.9</td><td style="border:1px solid #ccc; padding:6px;">182</td><td style="border:1px solid #ccc; padding:6px;">206</td><td style="border:1px solid #ccc; padding:6px;">7.5</td><td style="border:1px solid #ccc; padding:6px;">0</td></tr>
+        </tbody>
+    </table>
 
- 
+    <footer style="margin-top:30px;">
+        <p>© 2026 Osamudiamen | AI Healthcare Portfolio</p>
+    </footer>
+</body>
+</html>

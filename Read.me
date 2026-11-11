@@ -1,33 +1,140 @@
-# 🏥 Healthcare ML Dashboard
+# 🏥 Healthcare ML & AI Portfolio Dashboard
 
 ## 📌 Overview
-A machine learning web application that analyzes healthcare datasets and predicts disease outcomes.
+An intelligent machine learning web application that predicts disease outcomes (Diabetes, Hypertension, Typhoid), analyzes e-commerce customer conversion behaviors, and profiles healthcare/retail datasets with interactive analytics dashboards.
+
+---
 
 ## 🚀 Features
-- CSV/Excel upload
-- Data preprocessing
-- Model training & prediction
-- Interactive charts
-- PDF report generation
-- Authentication system
+- **Interactive ML Predictors**:
+  - **Diabetes Risk Assessment**: Live logistic regression model estimating risk probability from clinical markers (Age, BMI, Glucose, Insulin, HbA1c).
+  - **Hypertension Classifier**: Random Forest estimator assessing cardiovascular stages (Systolic/Diastolic BP, Heart Rate, BMI).
+  - **Typhoid Diagnosis**: Probabilistic inference from fever temperature curves, abdominal symptoms, and Widal test results.
+  - **E-Commerce Conversion ML**: Customer purchase intent model based on session duration, browsing depth, and cart abandonment.
+- **Dataset Analysis & Upload**:
+  - Upload CSV or Excel files (`/api/dataset-summary`) to inspect column dimensions, missing value counts, summary statistics, and data types.
+- **Responsive UI & Dark Mode**:
+  - Modern dashboard with mobile navigation drawer, theme switching, and interactive Chart.js visualizations.
+- **Production Multi-Cloud Deployments**:
+  - Ready-to-deploy configurations for **Render**, **AWS** (App Runner / ECS), **Vercel**, and **Netlify**.
+
+---
 
 ## 🛠 Tech Stack
-- Python
-- Flask
-- Pandas
-- Scikit-learn
-- SQLite
-- Chart.js
+- **Backend**: Python 3.12, Flask, Gunicorn
+- **Machine Learning & Data**: Scikit-learn, Pandas, NumPy
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+), Chart.js
+- **Testing**: Pytest
+- **Containers & Cloud**: Docker, Render, AWS, Vercel, Netlify
 
-## 📊 Model Performance
-Accuracy: 87%
-Precision: 85%
-Recall: 83%
+---
 
-## ⚙️ Installation
+## ⚙️ Local Installation & Development
 
 ```bash
-git clone https://github.com/yourusername/healthcare-ml-dashboard.git
-cd healthcare-ml-dashboard
+# Clone the repository
+git clone https://github.com/wisejoh7-tech/My-portfolio.git
+cd My-portfolio
+
+# Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Run automated tests
+pytest
+
+# Start the local development server
 python app.py
+```
+Visit `http://localhost:5000` in your browser.
+
+---
+
+## ☁️ Deployment Guide
+
+### 1. 🟣 Deploying to Render
+1. Push your repository to GitHub.
+2. Log into [Render](https://render.com) and click **New > Web Service**.
+3. Select your repository.
+4. Render automatically reads `render.yaml` or you can manually configure:
+   - **Environment**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn app:app`
+   - **Health Check Path**: `/health`
+5. Click **Create Web Service**.
+
+---
+
+### 2. 🟠 Deploying to AWS (App Runner or ECS)
+Using the included `Dockerfile` and `buildspec.yml`:
+
+#### Option A: AWS App Runner (Fastest container deployment)
+1. Push your repository to GitHub or push the Docker image to Amazon ECR.
+2. In the AWS Console, open **AWS App Runner** and click **Create service**.
+3. Choose **Source code repository** (select your GitHub repo) or **Container registry** (Amazon ECR).
+4. If choosing source code:
+   - **Configuration**: Use `Dockerfile` (or build command `pip install -r requirements.txt`, start command `gunicorn --bind 0.0.0.0:8080 app:app`).
+   - **Port**: `8080`
+5. Deploy the service.
+
+#### Option B: AWS Elastic Container Service (ECS)
+1. Build and tag the Docker image:
+   ```bash
+   docker build -t healthcare-ml .
+   docker tag healthcare-ml:latest <account-id>.dkr.ecr.<region>.amazonaws.com/healthcare-ml:latest
+   docker push <account-id>.dkr.ecr.<region>.amazonaws.com/healthcare-ml:latest
+   ```
+2. Create an ECS Task Definition mapping port 8080 and launch via AWS Fargate.
+
+---
+
+### 3. ▲ Deploying to Vercel
+1. Install Vercel CLI (or connect GitHub in the Vercel dashboard):
+   ```bash
+   npm i -g vercel
+   vercel
+   ```
+2. The project contains `vercel.json` configured with `@vercel/python` routing all traffic to `app.py`.
+3. Vercel will install dependencies from `requirements.txt` and launch the WSGI application serverlessly.
+
+---
+
+### 4. 🌐 Deploying to Netlify
+1. Connect your repository to [Netlify](https://app.netlify.com).
+2. Netlify will detect `netlify.toml` with:
+   - **Build directory**: `.`
+   - **Functions**: `netlify/functions`
+   - **Redirects**: `/api/*`, `/predict/*` and page routing routed to the serverless function.
+3. Deploy site.
+
+---
+
+## 📡 API Endpoints Summary
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/` | Portfolio home page |
+| `GET` | `/projects` | Machine learning showcase |
+| `GET` | `/health` | Healthcheck endpoint (`{"status": "healthy"}`) |
+| `POST` | `/predict/diabetes` | Diabetes risk inference (`age`, `bmi`, `glucose`, `insulin`, `hba1c`) |
+| `POST` | `/predict/hypertension` | Hypertension risk inference (`age`, `systolic_bp`, `diastolic_bp`, `bmi`, `heart_rate`) |
+| `POST` | `/predict/typhoid` | Typhoid probability evaluation (`age`, `fever_temp`, `abdominal_pain`, `widal_test`) |
+| `POST` | `/predict/ecommerce` | Purchase prediction (`pages_visited`, `time_spent_min`, `cart_abandoned`) |
+| `POST` | `/api/dataset-summary` | Upload CSV / Excel dataset to get shape, statistics, and column info |
+
+---
+
+## 🧪 Testing
+
+Run automated tests:
+```bash
+pytest tests/ -v
+```
+
+---
+
+## 📄 License
+MIT License. © 2026 Osamudiamen.
